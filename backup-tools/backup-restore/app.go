@@ -12,7 +12,7 @@ import (
     "strings"
     "time"
 
-    "./internal"
+    "backup-restore/internal"
 
     "github.com/ncw/swift"
     "gopkg.in/urfave/cli.v1"
