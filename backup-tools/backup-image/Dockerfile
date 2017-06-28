@@ -7,6 +7,8 @@ ENV INFLUXVER=1.2.0
 ADD files/db-backup.sh /usr/local/sbin/db-backup.sh
 ADD files/backup-run.sh /usr/local/sbin/backup-run.sh
 
+ADD files/backup-restore.tar /
+
 RUN mkdir /backup \
 	&& sed -i s/^deb-src/\#\ deb-src/g /etc/apt/sources.list \
 	&& sed -i s/archive\.ubuntu\.com/de\.archive\.ubuntu\.com/g /etc/apt/sources.list \
@@ -14,6 +16,7 @@ RUN mkdir /backup \
 	&& echo "APT::Install-Recommends "0";" >> /etc/apt/apt.conf.d/99local \
 	&& chmod a+x /usr/local/sbin/db-backup.sh \
 	&& chmod a+x /usr/local/sbin/backup-run.sh \
+  && chmod a+x /usr/local/sbin/backup-restore \
 	&& apt-get update && apt-get upgrade -y \
 	&& apt-get install -y --no-install-recommends wget lsb-release ca-certificates \
 	&& echo "deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main 9.6" > /etc/apt/sources.list.d/postgresql.list \
