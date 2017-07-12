@@ -1,9 +1,9 @@
 FROM golang
 
-COPY . /go/src/backup-restore/
+COPY . /go/src/github.com/sapcc/containers/backup-tools/backup-restore
 
 RUN set -uex; \
-    cd /go/src/backup-restore; \
+    cd /go/src/github.com/sapcc/containers/backup-tools/backup-restore; \
     export GOPATH=/go; \
     go get; \
     CGO_ENABLED=0 GOOS=linux go build -ldflags "-s" -a -installsuffix cgo -o /go/bin/backup-restore; \
